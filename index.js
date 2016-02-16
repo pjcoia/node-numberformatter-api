@@ -18,3 +18,7 @@ function format(number, country_code) {
 var server = restify.createServer();
 server.get('/format/:country_code/:number', respond);
 server.head('/format/:country_code/:number', respond);
+
+server.listen(8080, function() {
+  console.log('%s listening at %s', server.name, server.url);
+});

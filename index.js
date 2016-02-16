@@ -12,7 +12,7 @@ function format(number, country_code) {
   var phoneNumber = phoneUtil.parse(number, country_code);
   var toNumber = phoneUtil.format(phoneNumber, phone.PhoneNumberFormat.INTERNATIONAL);
 
-  return toNumber;
+  return {"international_format": toNumber};
 }
 
 var server = restify.createServer();

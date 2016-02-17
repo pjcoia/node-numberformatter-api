@@ -10,8 +10,13 @@ function respond(req, res, next) {
 }
 
 function format(number, country_code) {
-  var iso2_country_code = iso.findCountryByCode(country_code).alpha2;
-  var phoneNumber = phoneUtil.parse(number, iso2_country_code);
+  if (country_code.length != 2) {
+    var iso2_country_code = iso.findCountryByCode(country_code).alpha2;
+    var phoneNumber = phoneUtil.parse(number, iso2_country_code);
+  } else {
+    var phoneNumber = phoneUtil.parse(number, country_code);
+  }
+
   var toNumber = phoneUtil.format(phoneNumber, phone.PhoneNumberFormat.INTERNATIONAL);
 
   return {"international_format": toNumber};
